@@ -72,3 +72,10 @@ const Navbar = () => {
 };
 
 export default Navbar;
+// whaat is the motivation behind the project
+// what is objective?
+// should be unique
+// different methodology
+// what is your findings
+
+
