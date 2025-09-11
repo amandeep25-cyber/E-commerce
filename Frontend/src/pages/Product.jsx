@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams} from 'react-router-dom'
 import { ShopContext } from "../context/ShopContext"
 import { assets } from '../assets/assets';
+import RelatedProducts from '../components/RelatedProducts';
 
 const Product = () => {
 
 
   const {productId} = useParams();
-  const {products,currency} = useContext(ShopContext);
+  const {products,currency, addToCart} = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image,setImage] = useState('');
   const [size,setSize] =useState('')
@@ -27,7 +28,7 @@ const Product = () => {
   },[productId])
 
   return productData ? (
-    <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100 mx-6'>
+    <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
       {/* product data */}
       <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
         {/* product images */}
@@ -64,7 +65,7 @@ const Product = () => {
               ))}
             </div>
           </div>
-          <button className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700 '>ADD TO CART</button>
+          <button onClick={()=> addToCart(productData._id, size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700 '>ADD TO CART</button>
           <hr className='mt-8 sm:w-4/5'/>
           <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
             <p>100% Original Product.</p>
@@ -85,6 +86,9 @@ const Product = () => {
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos odit eos pariatur recusandae esse illum voluptatibus nam minima amet. Iste perspiciatis in explicabo impedit voluptatum tempore voluptate, distinctio beatae. Atque!</p>
         </div>
       </div>
+
+      {/* Display related products */}
+      <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
     </div>
   ) : <div className="opacity-0"></div>
 }
