@@ -12,6 +12,7 @@ connectDB()
 connectCloudinary();
 
 app.use(express.json())
+app.use(express.urlencoded())
 app.use(cors())
 
 //api endpoints
