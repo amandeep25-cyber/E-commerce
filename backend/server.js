@@ -4,6 +4,7 @@ import 'dotenv/config'
 import connectDB from './config/connection.db.js'
 import connectCloudinary from './config/cloudinary.js'
 import userRoutes from './routes/user.routes.js'
+import productRoutes from './routes/product.routes.js'
 
 const app = express()
 const port = process.env.PORT || 8080
@@ -14,8 +15,8 @@ app.use(express.json())
 app.use(cors())
 
 //api endpoints
-
 app.use('/api/user',userRoutes)
+app.use('/api/product',productRoutes)
 
 app.get('/',(req,res)=>{
     res.send("Api is Working");
